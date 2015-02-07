@@ -1,55 +1,49 @@
 ========================================================================
-       MICROSOFT FOUNDATION CLASS LIBRARY : ColorEnhansement
+       MICROSOFT FOUNDATION CLASS LIBRARY : ImageViewer
 ========================================================================
 
 
-AppWizard has created this ColorEnhansement application for you.  This application
+AppWizard has created this ImageViewer application for you.  This application
 not only demonstrates the basics of using the Microsoft Foundation classes
 but is also a starting point for writing your application.
 
 This file contains a summary of what you will find in each of the files that
-make up your ColorEnhansement application.
+make up your ImageViewer application.
 
-ColorEnhansement.dsp
+ImageViewer.dsp
     This file (the project file) contains information at the project level and
     is used to build a single project or subproject. Other users can share the
     project (.dsp) file, but they should export the makefiles locally.
 
-ColorEnhansement.h
+ImageViewer.h
     This is the main header file for the application.  It includes other
     project specific headers (including Resource.h) and declares the
-    CColorEnhansementApp application class.
+    CImageViewerApp application class.
 
-ColorEnhansement.cpp
+ImageViewer.cpp
     This is the main application source file that contains the application
-    class CColorEnhansementApp.
+    class CImageViewerApp.
 
-ColorEnhansement.rc
+ImageViewer.rc
     This is a listing of all of the Microsoft Windows resources that the
     program uses.  It includes the icons, bitmaps, and cursors that are stored
     in the RES subdirectory.  This file can be directly edited in Microsoft
 	Visual C++.
 
-ColorEnhansement.clw
+ImageViewer.clw
     This file contains information used by ClassWizard to edit existing
     classes or add new classes.  ClassWizard also uses this file to store
     information needed to create and edit message maps and dialog data
     maps and to create prototype member functions.
 
-res\ColorEnhansement.ico
+res\ImageViewer.ico
     This is an icon file, which is used as the application's icon.  This
-    icon is included by the main resource file ColorEnhansement.rc.
+    icon is included by the main resource file ImageViewer.rc.
 
-res\ColorEnhansement.rc2
+res\ImageViewer.rc2
     This file contains resources that are not edited by Microsoft 
 	Visual C++.  You should place all resources not editable by
 	the resource editor in this file.
-
-ColorEnhansement.reg
-    This is an example .REG file that shows you the kind of registration
-    settings the framework will set for you.  You can use this as a .REG
-    file to go along with your application or just delete it and rely
-    on the default RegisterShellFileTypes registration.
 
 
 
@@ -65,20 +59,20 @@ res\Toolbar.bmp
     This bitmap file is used to create tiled images for the toolbar.
     The initial toolbar and status bar are constructed in the CMainFrame
     class. Edit this toolbar bitmap using the resource editor, and
-    update the IDR_MAINFRAME TOOLBAR array in ColorEnhansement.rc to add
+    update the IDR_MAINFRAME TOOLBAR array in ImageViewer.rc to add
     toolbar buttons.
 /////////////////////////////////////////////////////////////////////////////
 
 AppWizard creates one document type and one view:
 
-ColorEnhansementDoc.h, ColorEnhansementDoc.cpp - the document
-    These files contain your CColorEnhansementDoc class.  Edit these files to
+ImageViewerDoc.h, ImageViewerDoc.cpp - the document
+    These files contain your CImageViewerDoc class.  Edit these files to
     add your special document data and to implement file saving and loading
-    (via CColorEnhansementDoc::Serialize).
+    (via CImageViewerDoc::Serialize).
 
-ColorEnhansementView.h, ColorEnhansementView.cpp - the view of the document
-    These files contain your CColorEnhansementView class.
-    CColorEnhansementView objects are used to view CColorEnhansementDoc objects.
+ImageViewerView.h, ImageViewerView.cpp - the view of the document
+    These files contain your CImageViewerView class.
+    CImageViewerView objects are used to view CImageViewerDoc objects.
 
 
 
@@ -87,7 +81,7 @@ Other standard files:
 
 StdAfx.h, StdAfx.cpp
     These files are used to build a precompiled header (PCH) file
-    named ColorEnhansement.pch and a precompiled types file named StdAfx.obj.
+    named ImageViewer.pch and a precompiled types file named StdAfx.obj.
 
 Resource.h
     This is the standard header file, which defines new resource IDs.

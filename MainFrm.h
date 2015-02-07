@@ -2,8 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAINFRM_H__272235C5_25B3_4138_8E5C_A117173B26FC__INCLUDED_)
-#define AFX_MAINFRM_H__272235C5_25B3_4138_8E5C_A117173B26FC__INCLUDED_
+#if !defined(AFX_MAINFRM_H__E1E7EBAB_DF85_4FEB_8007_29094259344D__INCLUDED_)
+#define AFX_MAINFRM_H__E1E7EBAB_DF85_4FEB_8007_29094259344D__INCLUDED_
 
 #if _MSC_VER > 1000
 #pragma once
@@ -43,8 +43,11 @@ protected:  // control bar embedded members
 
 // Generated message map functions
 protected:
+	CSplitterWnd m_wndSplitter;
 	//{{AFX_MSG(CMainFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+		// NOTE - the ClassWizard will add and remove member functions here.
+		//    DO NOT EDIT what you see in these blocks of generated code!
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
@@ -54,4 +57,4 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAINFRM_H__272235C5_25B3_4138_8E5C_A117173B26FC__INCLUDED_)
+#endif // !defined(AFX_MAINFRM_H__E1E7EBAB_DF85_4FEB_8007_29094259344D__INCLUDED_)

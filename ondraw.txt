@@ -1,0 +1,30 @@
+void CImageViewerView::OnDraw(CDC* pDC)
+{
+	CImageViewerDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	// TODO: add draw code for native data here
+
+//	m_bScale=pDoc->m_bScale;
+	if(m_pPicture)
+	{		
+		CRect rc;
+		GetClientRect(&rc);
+		if(!m_bScale){
+		pDC->BitBlt(0,0,nWidth,nHeight,memdc,0,0,SRCCOPY);
+		}	
+		else{
+		nWidth=nOrigWidth;nHeight=nOrigHeight;
+//		Proportion1=pDoc->Proportion1;
+//		Proportion2=pDoc->Proportion2;
+			memdc=this->Zoom(&nWidth,&nHeight,Proportion1,Proportion2,memdc);
+			m_pPicture->Render(memdc->GetSafeHdc(),0,0,nWidth,nHeight,0,hmHeight,hmWidth,-hmHeight,&rc);
+			pDC->BitBlt(0,0,nWidth,nHeight,memdc,0,0,SRCCOPY);
+			m_bScale=FALSE;
+		}
+	}
+	if(m_bInvalidRect)
+	{
+		pDC->Rectangle(m_pointStart.x,m_pointStart.y,
+		m_pointEnd.x,m_pointEnd.y);
+	}
+}

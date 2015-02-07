@@ -1,0 +1,53 @@
+void CImageViewerView::LoadPicture(CString strFile) 
+{
+	HANDLE hFile=CreateFile(strFile,GENERIC_READ,0,NULL,OPEN_EXISTING,0,NULL);
+	_ASSERTE(INVALID_HANDLE_VALUE!=hFile);
+	DWORD dwFileSize=GetFileSize(hFile,NULL);
+	_ASSERTE(-1!=dwFileSize);
+	LPVOID pvData =NULL;
+	HGLOBAL hGlobal=GlobalAlloc(GMEM_MOVEABLE,dwFileSize);
+	_ASSERTE(NULL!=hGlobal);
+	pvData=GlobalLock(hGlobal);
+	_ASSERTE(NULL!=pvData);
+	DWORD dwBytesRead=0;
+	BOOL bRead=ReadFile(hFile,pvData,dwFileSize,&dwBytesRead,NULL);
+	_ASSERTE(FALSE!=bRead);
+	GlobalUnlock(hGlobal);
+	CloseHandle(hFile);
+	LPSTREAM pstm=NULL;
+	HRESULT hr=CreateStreamOnHGlobal(hGlobal,TRUE,&pstm);
+	_ASSERTE (SUCCEEDED(hr) && pstm);
+
+	if(m_pPicture)
+	{
+		m_pPicture->Release();
+	}
+	hr=::OleLoadPicture(pstm,dwFileSize,FALSE,IID_IPicture,(LPVOID *)&m_pPicture);
+	_ASSERTE(SUCCEEDED(hr) && m_pPicture);
+	pstm->Release();
+	//输出宽和高，读入位图到客户区内存
+		CRect rc;
+		GetClientRect(&rc);
+		CDC *pDC=CDC::FromHandle(::GetDC(NULL));
+		m_pPicture->get_Width(&hmWidth);
+		m_pPicture->get_Height(&hmHeight);
+		nOrigWidth=MulDiv(hmWidth,GetDeviceCaps(pDC->GetSafeHdc(),LOGPIXELSX),HIMETRIC_INCH);
+		nOrigHeight=MulDiv(hmHeight,GetDeviceCaps(pDC->GetSafeHdc(),LOGPIXELSY),HIMETRIC_INCH);
+
+		
+		nWidth=nOrigWidth;nHeight=nOrigHeight;
+		Proportion1=500/(float)nWidth;
+		Proportion2=400/(float)nHeight;
+		if(!memdc)
+			delete memdc;
+		memdc=new CDC;
+		memdc->CreateCompatibleDC(pDC);
+		CBitmap bmp;
+		bmp.CreateCompatibleBitmap(pDC,nWidth,nHeight);
+		memdc->SelectObject(bmp);
+		::ReleaseDC(::GetDesktopWindow(),pDC->GetSafeHdc());
+	//将图片自动缩放到内存DC
+	memdc=this->Zoom(&nWidth,&nHeight,Proportion1,Proportion2,memdc);			
+	m_pPicture->Render(memdc->GetSafeHdc(),0,0,nWidth,nHeight,0,hmHeight,hmWidth,-hmHeight,&rc);
+	Invalidate();
+}
